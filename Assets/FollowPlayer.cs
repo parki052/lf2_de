@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-	public Transform m_Target;
+	public Transform player;
 	public float lerpSpeed = 3f;
 
 	void Start()
 	{
-		if (m_Target == null)
+		if (player == null)
 		{
-			m_Target = GameObject.Find("Player").transform;
+			player = GameObject.Find("Player").transform;
 		}
 	}
 
@@ -22,9 +22,17 @@ public class FollowPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-		Vector3 newPos = transform.position;
-		newPos.x = m_Target.position.x;
 
-		transform.position = Vector3.Lerp(transform.position, newPos, lerpSpeed * Time.deltaTime);
+		Vector3 newPos = transform.position;
+
+		if(player.position.x > 0)
+        {
+			newPos.x = player.position.x;
+        }
+
+		if(player.position.x > 2)
+        {
+			transform.position = Vector3.Lerp(transform.position, newPos, lerpSpeed * Time.deltaTime);
+        }
     }
 }
