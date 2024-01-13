@@ -30,7 +30,7 @@ public class FollowPlayer : MonoBehaviour
 			newPos.x = player.position.x;
         }
 
-		if(player.position.x > 2)
+		if(transform.position.x > 0)
         {
 			transform.position = Vector3.Lerp(transform.position, newPos, lerpSpeed * Time.deltaTime);
         }
